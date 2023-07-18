@@ -5,6 +5,8 @@ import { MovieResponse, MovieResult, fetchRequest } from '../common/api';
 import { ENDPOINT } from '../common/endpoints';
 import ChevronLeft from '@heroicons/react/24/outline/ChevronLeftIcon'
 import ChevronRight from '@heroicons/react/24/outline/ChevronRightIcon'
+import PageIndecator from './PageIndecator';
+import MovieCard from './MovieCard';
 
 type RowProp = {
   endpoint: string;
@@ -19,7 +21,8 @@ const ContentRow = ({ title, endpoint }: RowProp) => {
   const [translateX, setTranslateX] = useState(0)
   const [pagesCount, setPagesCount] = useState(0)
   const [currentPage, setCurrentPage] = useState(0)
-
+  const disablePrev = currentPage ===0 
+  const disableNext = currentPage + 1=== pagesCount
   const fetchPopularReq = async () => {
     try {
       const response = await fetchRequest<MovieResponse<MovieResult[]>>(endpoint);
@@ -39,6 +42,7 @@ const ContentRow = ({ title, endpoint }: RowProp) => {
         let updatedTranslateX = translateX - getTranslateXValue()
       sliderRef.current.style.transform = `translateX(${updatedTranslateX}%)`;  
       setTranslateX(updatedTranslateX)
+      setCurrentPage(currentPage+1)
     }
   };
 
@@ -47,6 +51,7 @@ const ContentRow = ({ title, endpoint }: RowProp) => {
         let updatedTranslateX = translateX  + getTranslateXValue()
       sliderRef.current.style.transform = `translateX(${updatedTranslateX}%)`;
       setTranslateX(updatedTranslateX)
+      setCurrentPage(currentPage-1)
     }
   };
 
@@ -54,7 +59,6 @@ const ContentRow = ({ title, endpoint }: RowProp) => {
     let translateX = 0
     if (sliderRef.current) {
             translateX  = ((cardsPerPage.current *CARD_WIDTH)/sliderRef.current.clientWidth)*100;
-            setPagesCount(Math.ceil(rowData.length/cardsPerPage.current))
     }
     return translateX
   }
@@ -64,6 +68,7 @@ const ContentRow = ({ title, endpoint }: RowProp) => {
 if (rowData?.length > 0) {
         if (containerRef.current) {
                 cardsPerPage.current = Math.floor(containerRef.current.clientWidth/CARD_WIDTH)
+            setPagesCount(Math.ceil(rowData.length/cardsPerPage.current))
 
         }
 }
@@ -76,32 +81,22 @@ if (rowData?.length > 0) {
   }, []);
 
   return (
-    <section className="row-container ml-12  hover:cursor-pointer">
-      <h2 className="mb-2">{title}</h2>
-      <ul className='flex  gap-1 mb-4 justify-end items-center pr-4 opacity-0 transition-opacity duration-300 ease-in '>
-    {Array(pagesCount).fill(0).map((page,index)=>(
-        <li className={`h-[2px] w-3 ${currentPage===index ? "bg-gray-100" : "bg-gray-600"} `} key={index}></li>
-    ))}
-      </ul>
-      <section className="relative flex flex-nowrap overflow-hidden gap-2" ref={containerRef}>
-        <button className="absolute h-full bg-black/25 w-12 opacity-0  transition-opacity duration-300 ease-in" onClick={PrevClick}><ChevronLeft/></button>
-        <button className="absolute z-[1] h-full right-0 w-12 bg-black/25  opacity-0 transition-opacity duration-300 ease-in" onClick={onNextClick}>
+    <section className=" row-container ml-12  hover:cursor-pointer">
+      <h2 className=" text-lg">{title}</h2>
+    <PageIndecator className='mb-2  opacity-0 transition-opacity duration-300 ease-in' pagesCount={pagesCount} currentPage={currentPage} />
+      <section className="relative flex flex-nowrap overflow-hidden mb-8 gap-2" ref={containerRef}>
+       {!disablePrev ? <button className="absolute h-full bg-black/25 w-12 opacity-0  transition-opacity duration-300 ease-in" onClick={PrevClick}><ChevronLeft/></button> : null}
+      {!disableNext ?   <button className="absolute z-[1] h-full right-0 w-12 bg-black/25  opacity-0 transition-opacity duration-300 ease-in" onClick={onNextClick}>
          <ChevronRight className='text-white '/>
-        </button>
-
+        </button> : null
+}
         <section ref={sliderRef} className="flex gap-2 transition-transform delay-700">
-          {rowData?.map((row) => {
-            const { id, title, poster_path } = row;
+          {rowData?.map((row,index) => {
+            
             console.log(row);
 
             return (
-              <section className="flex-none aspect-square overflow-hidden rounded-md" key={id}>
-                <img
-                  src={createImageUrl(poster_path)}
-                  className="w-[200px] aspect-square object-contain"
-                  alt={title}
-                />
-              </section>
+              <MovieCard key={`${row.id}-${index}`} {...row}/>
             );
           })}
         </section>

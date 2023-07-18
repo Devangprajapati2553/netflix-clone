@@ -7,6 +7,6 @@ body{
   color: theme("colors.white");
 
 }
-.row-container:hover   .opacity-0{
+.row-container:hover .opacity-0 {
   opacity: theme("opacity.100");
 }
