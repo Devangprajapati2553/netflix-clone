@@ -6,12 +6,12 @@ type ModelProp = {
     onClose: (value: boolean) => void;
     title: string | React.ReactElement,
     children: React.ReactElement,
-    position? : Position | null
+    position?: Position | null
     ,
-    closeModel?:()=>void
+    closeModel?: () => void
 }
 
-const Model = ({ isOpen, onClose, title, children,position,closeModel }: ModelProp) => {
+const Model = ({ isOpen, onClose, title, children, position, closeModel }: ModelProp) => {
     const pannelRef = useRef<HTMLDivElement>(null)
     const OnMouseLeave = () => {
         if (closeModel) {
@@ -36,10 +36,10 @@ const Model = ({ isOpen, onClose, title, children,position,closeModel }: ModelPr
                     leave="ease-in duration-200"
                     leaveFrom="opacity-100"
                     leaveTo="opacity-0"
-                    afterEnter={()=>{
+                    afterEnter={() => {
                         pannelRef.current?.addEventListener('mouseleave', OnMouseLeave)
                     }}
-                    afterLeave={()=>{
+                    afterLeave={() => {
                         pannelRef.current?.removeEventListener('mouseleave', OnMouseLeave)
 
                     }}
@@ -60,10 +60,10 @@ const Model = ({ isOpen, onClose, title, children,position,closeModel }: ModelPr
                         >
                             <Dialog.Panel
                                 style={position ? {
-                                    position:"fixed",
+                                    position: "fixed",
                                     ...position
-                                }:{}}
-                            className=" transform overflow-hidden rounded-2xl bg-dark text-left h-auto  align-middle shadow-xl transition-all">
+                                } : {}}
+                                className=" transform overflow-hidden rounded-2xl bg-dark text-left h-auto  align-middle shadow-xl transition-all">
                                 <div ref={pannelRef}>
 
 
