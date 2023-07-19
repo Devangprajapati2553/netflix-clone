@@ -2,6 +2,7 @@ import React from 'react'
 
 const PageIndecator = ({pagesCount,currentPage,className} :{pagesCount:number, currentPage:number,className:string}) => {
   return (
+    isFinite(pagesCount)?
     <div>
         <ul className={`flex  gap-1  justify-end items-center pr-4  ${className} `}>
     {Array(pagesCount).fill(0).map((page,index)=>(
@@ -9,6 +10,8 @@ const PageIndecator = ({pagesCount,currentPage,className} :{pagesCount:number, c
     ))} 
       </ul>
     </div>
+    :
+    null
   )
 }
 

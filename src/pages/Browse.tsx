@@ -6,7 +6,7 @@ import Banner from '../component/Banner'
 
 const Browse = () => {
   return (
-    <section >
+    <section  className='absolute top-0'>
       <Banner/>
         <ContentRow endpoint={ENDPOINT.MOVIES_POPULAR} title = "New & Popular" />
         <ContentRow endpoint={ENDPOINT.MOVIES_TOP_RATED} title = "Top Rated" />

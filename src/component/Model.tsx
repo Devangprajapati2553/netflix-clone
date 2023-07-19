@@ -8,17 +8,16 @@ type ModelProp = {
     children: React.ReactElement,
     position? : Position | null
     ,
-    closeModel:()=>void
+    closeModel?:()=>void
 }
 
 const Model = ({ isOpen, onClose, title, children,position,closeModel }: ModelProp) => {
     const pannelRef = useRef<HTMLDivElement>(null)
     const OnMouseLeave = () => {
-        console.log("Mouse Leave Happend ");
-        // closeModel();
-
+        if (closeModel) {
+            closeModel();
+        }
     }
-
     // useEffect(() => {
 
     //     if (pannelRef.current) {

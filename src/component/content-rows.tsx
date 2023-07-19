@@ -93,10 +93,10 @@ if (rowData?.length > 0) {
         <section ref={sliderRef} className="flex gap-2 transition-transform delay-700">
           {rowData?.map((row,index) => {
             
-            console.log(row);
+           
 
             return (
-              <MovieCard key={`${row.id}-${index}`} {...row}/>
+              <MovieCard uid={`${row.id}-${title}`} key={`${row.id}-${title}`} {...row}/>
             );
           })}
         </section>
