@@ -29,8 +29,8 @@ const Login = () => {
     <article>
         <h1 className='mb-4 text-4xl'>Sign In</h1>
         <section className='flex flex-col gap-4'>
-            <input type="email" name="email" id="email" className='rounded-md bg-zinc-500 p-2 text-gray-300' />
-            <input type="password" name="password" id="password" className='rounded-md bg-zinc-500 p-2 text-gray-300' />
+            <input type="email" name="email" id="email" className='rounded-md bg-zinc-500 p-2 text-gray-300 outline-none' />
+            <input type="password" name="password" id="password" className='rounded-md bg-zinc-500 p-2 text-gray-300 outline-none' />
         <button  className='my-8 rounded-md bg-netFlixRed p-2 font-semibold' type='submit'>Sign in</button>
         </section>
         <p>New to Netflix? Sign up now.</p>

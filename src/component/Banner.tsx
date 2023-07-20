@@ -7,7 +7,7 @@ import PlayIcon from '@heroicons/react/24/solid/PlayCircleIcon'
 import Info from '@heroicons/react/24/outline/InformationCircleIcon'
 
 
-const Banner = () => {
+const Banner = ({type}) => {
 const [randomMovie, setRandomMovie] = useState<MovieResult>()
 const [videoInfo, setVideoInfo] = useState<MovieVideoInfo>()
 const [hidePoster, setHidePoster] = useState(false)
@@ -25,7 +25,7 @@ const  getRandomIndex  =(last:number) => {
     return Math.floor(Math.random()* (last-1))
  }
  const FetchPopularMovie = async() => { 
-        const response = await fetchRequest<MovieResponse<MovieResult[]>>(ENDPOINT.MOVIES_POPULAR)
+        const response = await fetchRequest<MovieResponse<MovieResult[]>>(type)
             const filteredMovie=response.results.filter(movie=>movie.backdrop_path)
         // setRandomMovie( filteredMovie[getRandomIndex(filteredMovie.length)])
 
