@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import PencilIcon from '@heroicons/react/24/outline/PencilIcon'
 import PlusIcon from '@heroicons/react/24/outline/PlusCircleIcon'
 import Model from '../component/Model';
-import { ProviderId } from 'firebase/auth';
+
 import { useProfilesContext, useProfilesDispatchContext } from '../component/ProfileContext';
 import { ActionType, UserProfile } from '../common/types';
 const Profiles = ({ edit }: { edit: boolean }) => {
@@ -81,6 +81,13 @@ const Profiles = ({ edit }: { edit: boolean }) => {
   );
 }
 
+export default Profiles
+
+
+
+
+
+
 const ProfileButton = ({
   buttonType = "primary",
   ...props
@@ -90,17 +97,19 @@ const ProfileButton = ({
   return <button {...props} className={`${buttonType === "primary" ? "bg-gray-100 text-dark hover:bg-netFlixRed hover:text-white" : "border border-white text-gray-400 hover:text-white"} py-2 flex   w-fit  px-4 text-xl ${props.className}`}>{props.children}</button>
 }
 
+const ProfileCard = ({ 
+  edit,
+   onEditClick,
+    onProfileClick,
+     profile
+ }: { edit: boolean,
+   onEditClick: (profile: UserProfile) => void;
+    onProfileClick: (profile: UserProfile) => void;
+     profile: UserProfile }) => {
 
-
-export default Profiles
-
-
-
-const ProfileCard = ({ edit, onEditClick, onProfileClick, profile }: { edit: boolean, onEditClick: (profile: UserProfile) => void; onProfileClick: (profile: UserProfile) => void; profile: UserProfile }) => {
-
-  const editClick = (event: React.SyntheticEvent) => {
-    event.stopPropagation()
-  }
+  // const editClick = (event: React.SyntheticEvent) => {
+  //   event.stopPropagation()
+  // }
 
   const { id, imageUrl, name } = profile
 
@@ -119,7 +128,6 @@ const ProfileCard = ({ edit, onEditClick, onProfileClick, profile }: { edit: boo
 
 
 }
-
 
 const AddProfile = ({ onAddProfile }: { onAddProfile: () => void }) => {
   return <section className='flex cursor-pointer flex-col place-items-center gap-2 text-gray-200'>

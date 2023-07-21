@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 import { FetchVideoInfo, MovieResponse, MovieResult, MovieVideoInfo, fetchRequest } from '../common/api'
-import { ENDPOINT } from '../common/endpoints'
+
 import { createImageUrl } from '../common/utils'
 import YouTube,{YouTubeEvent, YouTubeProps} from 'react-youtube'
 import PlayIcon from '@heroicons/react/24/solid/PlayCircleIcon'
 import Info from '@heroicons/react/24/outline/InformationCircleIcon'
+import Loader from './Loader'
 
 
-const Banner = ({type}) => {
+const Banner = ({type} :{type:any}) => {
 const [randomMovie, setRandomMovie] = useState<MovieResult>()
 const [videoInfo, setVideoInfo] = useState<MovieVideoInfo>()
 const [hidePoster, setHidePoster] = useState(false)
@@ -31,6 +32,8 @@ const  getRandomIndex  =(last:number) => {
 
         const randomSelection = filteredMovie[getRandomIndex(filteredMovie.length)]
         setRandomMovie(randomSelection)
+        console.log(randomSelection,"random");
+        
 
         
 
@@ -39,7 +42,7 @@ const  getRandomIndex  =(last:number) => {
           setVideoInfo(videoInfo[0])
           setTimeout(() => {
             setHidePoster(true)
-          }, 800);
+          }, 1000);
         }
 
         useEffect(() => {
@@ -65,22 +68,23 @@ const  getRandomIndex  =(last:number) => {
       onStateChange={OnStateChange}
       className={`${!hidePoster ? "h-0 invisible" : "h-full w-full visible "} absolute z-[2] -mt-14`   }
       />):null}
-{showBackDrop ?      <section className='absolute z-[1] top-0 left-0 w-full h-full bg-dark/60'></section>:null}
+{showBackDrop ?     
+ <section className='absolute z-[1] top-0 left-0 w-full h-full bg-dark/60'></section>:null}
       <section className='z-[1] absolute bottom-16 ml-16 max-w-sm flex  flex-col gap-2'>
         <h2 className='text-6xl'>{randomMovie.title}</h2>
         <p className='text-sm line-clamp-3'>{randomMovie.overview}</p>
         <section className='flex gap-2'>
-          <button className='flex w-[100px] items-center rounded-md bg-white p-2 text-dark '>
+          <button className='flex w-[100px] items-center rounded-md bg-white p-2 text-dark justify-center'>
               <PlayIcon className='h-8 w-8 '/> <span>Play</span>
           </button>
-          <button className='flex w-[150px] items-center rounded-md bg-zinc-400/50 p-2 text-white '>
+          <button className='flex w-[150px] items-center rounded-md bg-zinc-400/50 p-2 text-white justify-center'>
               <Info className='h-8 w-8 '/> <span>More Info</span>
           </button>
 
 
         </section>
       </section>
-    </section>) :null
+    </section>) :<Loader/>
   )
 }
 

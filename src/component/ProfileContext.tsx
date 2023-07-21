@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useEffect, useReducer } from 'react'
-import { ActionType, ProfileContextType, UserProfile } from '../common/types';
+import { ActionType, ProfileContextType } from '../common/types';
 import { useAuth } from '../common/auth';
 import ProfileReducer from '../reducer/profileReducer';
 
@@ -24,7 +24,7 @@ const ProfilesProvider = ({ children }: { children: React.ReactElement }) => {
             if (state) {
                 
                 const StoredProfiles = getProfiles()
-                StoredProfiles.set(user.email, state)
+                StoredProfiles.set(user.email, state as ProfileContextType)
                 updateProfiles(StoredProfiles)
         } else {
             dispatch({ type: "load", payload: userProfiles })
@@ -41,10 +41,22 @@ const ProfilesProvider = ({ children }: { children: React.ReactElement }) => {
 export default ProfilesProvider
 
 
-
 const getProfiles = (): StoredProfiles => {
-    return new Map(JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) ?? [])
-}
+    const storedData = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || 'null');
+  
+    if (storedData === null) {
+      return new Map<string, ProfileContextType>();
+    }
+  
+    if (Array.isArray(storedData)) {
+      return new Map<string, ProfileContextType>(storedData);
+    }
+  
+    // Handle the case where `storedData` is not an array.
+    return new Map<string, ProfileContextType>();
+  };
+  
+  
 const findProfile = (id: string) => {
     const profiles = getProfiles()
     return id ? profiles.get(id) ?? null : null

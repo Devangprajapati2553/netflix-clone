@@ -1,8 +1,8 @@
-import React, { MouseEvent, useEffect, useRef, useState } from 'react'
+import  {  useEffect, useRef, useState } from 'react'
 import { createImageUrl } from '../common/utils'
 import Model from './Model'
 import YouTube from 'react-youtube'
-import { FetchVideoInfo, MovieVideoInfo, fetchRequest } from '../common/api'
+import { FetchVideoInfo, MovieVideoInfo } from '../common/api'
 import PlayIcon from '@heroicons/react/24/solid/PlayCircleIcon'
 import LikeIcon from '@heroicons/react/24/outline/HandThumbUpIcon'
 import PlusIcon from '@heroicons/react/24/outline/PlusIcon'
@@ -28,14 +28,14 @@ const [videoInfo, setVideoInfo] = useState<MovieVideoInfo| null>(null)
 
 
     
-const onClose = (value:boolean) => {
+const onClose = () => {
     setIsOpen(false)
 }
 
 const CloseModel= () => {
     setIsOpen(false)
 }
-const onMouseEnter = async(event:any) => {
+const onMouseEnter = async() => {
     const [videoInfo] =await FetchVideoInfo(id.toString()) 
     let calculatedPosotion = movieCardRef.current?.getBoundingClientRect()
         console.log({calculatedPosotion});

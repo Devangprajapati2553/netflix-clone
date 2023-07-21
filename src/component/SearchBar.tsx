@@ -1,22 +1,23 @@
-import React, { useRef, useState,useEffect } from 'react'
+import  { useRef, useState,useEffect } from 'react'
 import SearchIcon from '@heroicons/react/24/outline/MagnifyingGlassIcon'
 
 const SearchBar = () => {
     const [open, setOpen] = useState(false)
     const strokeWidth = {strokeWidth : ".2rem"};
     const inputRef =  useRef<HTMLInputElement>(null)
-    const toggleSearch = (event: MouseEvent<HTMLButtonElement>) => { 
+    const outSideClick = (event: globalThis.MouseEvent) => { 
+        if ((event.target as HTMLInputElement).id !=="searchbar") {
+             setOpen(false)
+        }
+      }
+    const toggleSearch = (event: React.MouseEvent<HTMLButtonElement>) => { 
         event.stopPropagation();
         if (!open) {
             inputRef.current?.focus()
         }
         setOpen(!open)
      }
-     const outSideClick = (event: globalThis.MouseEvent) => { 
-        if ((event.target as HTMLInputElement).id !=="searchbar") {
-             setOpen(false)
-        }
-      }
+    
       useEffect(() => {
             if (open) {
                     window.addEventListener("click",outSideClick)

@@ -16,7 +16,8 @@ const ProfileReducer = (state: ProfileContextType, action: ActionType) => {
                 profiles: updatedProfiles,
                 selectedProfileId: state?.selectedProfileId
             }
-            return updateState
+            return updateState;
+
         }
 
         case "edit": {
@@ -29,15 +30,17 @@ const ProfileReducer = (state: ProfileContextType, action: ActionType) => {
                 })
                 return updatedState
             }
+            break
         }
 
         case "delete": {
             if (state) {
                 let updatedState = { ...state };
-                updatedState.profiles = updatedState.profiles.filter((profile) => profile.id !== payload.id)
+                updatedState.profiles = updatedState.profiles.filter((profile) => profile.id !== payload.id);
 
                 return updatedState
             }
+            break
         }
 
         case "current": {
@@ -48,10 +51,11 @@ const ProfileReducer = (state: ProfileContextType, action: ActionType) => {
                 }
                 return updatedState
             }
+            break;
         }
 
         case "load": {
-            return payload
+            return payload;
         }
     }
 }

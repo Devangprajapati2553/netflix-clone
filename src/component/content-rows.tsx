@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useEffect, useRef, useState } from 'react';
+import  { useEffect, useRef, useState } from 'react';
 import { MovieResponse, MovieResult, fetchRequest } from '../common/api';
-import { ENDPOINT } from '../common/endpoints';
 import ChevronLeft from '@heroicons/react/24/outline/ChevronLeftIcon'
 import ChevronRight from '@heroicons/react/24/outline/ChevronRightIcon'
 import PageIndecator from './PageIndecator';
@@ -33,9 +32,9 @@ const ContentRow = ({ title, endpoint }: RowProp) => {
     }
   };
 
-  const createImageUrl = (path: string) => {
-    return `${import.meta.env.VITE_BASE_IMAGE_URL}${path}`;
-  };
+  // const createImageUrl = (path: string) => {
+  //   return `${import.meta.env.VITE_BASE_IMAGE_URL}${path}`;
+  // };
 
   const onNextClick = () => {
     if (sliderRef.current) {
@@ -91,7 +90,7 @@ const ContentRow = ({ title, endpoint }: RowProp) => {
         </button> : null
         }
         <section ref={sliderRef} className="flex gap-2 transition-transform delay-700">
-          {rowData?.map((row, index) => {
+          {rowData?.map((row) => {
 
 
 

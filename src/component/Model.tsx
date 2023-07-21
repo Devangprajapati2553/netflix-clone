@@ -1,4 +1,4 @@
-import { useState, Fragment, useEffect, useRef, LegacyRef } from 'react'
+import {  Fragment,  useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import { Position } from '../common/types';
 type ModelProp = {

@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react'
+import {useState,useEffect} from 'react'
 import LogoImage from '../assets/logo.png'
 import {Link,NavLink} from 'react-router-dom'
 import NotificationIcon from '@heroicons/react/24/outline/BellIcon'
@@ -9,7 +9,7 @@ const Header = () => {
     const [fixed, setFixed] = useState(false)
 
     const IsActiveLink =  ({ isActive }:{ isActive:boolean })  =>{
-        return  isActive ? "font-semibold text-white" :"" ;
+        return  isActive ? "font-semibold text-white whitespace-nowrap" :"whitespace-nowrap" ;
     }   
 
     const onWindowScroll = () => { 
@@ -28,7 +28,7 @@ const Header = () => {
     
     
 
-  return <header className={`  py-2  pr-16 z-10 ${fixed ? "fixed top-0 bg-dark ":" relative bg-transparent "} 
+  return <header className={`  py-2  pr-16 z-10 ${fixed ? "fixed top-0 bg-dark ":" relative bg-transparent  "} 
     transition-colors duration-300 ease-linear w-full
   `}>
     <nav className='grid grid-cols-[200px_auto_auto] items-center gap-4 '>

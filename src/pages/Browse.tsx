@@ -1,5 +1,4 @@
-import React,{useEffect, useState} from 'react'
-import { MovieResponse, MovieResult, fetchRequest } from '../common/api'
+
 import {ENDPOINT} from '../common/endpoints'
 import ContentRow from '../component/content-rows'
 import Banner from '../component/Banner'

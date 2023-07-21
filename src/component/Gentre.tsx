@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { ENDPOINT } from '../common/endpoints'
 import ContentRow from './content-rows'
 import Banner from './Banner'

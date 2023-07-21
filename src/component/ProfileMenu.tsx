@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
+import  { useEffect, useRef, useState } from 'react'
 import ChevronDown from '@heroicons/react/24/outline/ChevronDownIcon'
-import ProfileImage from '/profile-1.jpg'
+
 import { useAuth } from '../common/auth'
 import { Link, useNavigate } from 'react-router-dom'
 import { useProfilesContext, useProfilesDispatchContext } from './ProfileContext'
@@ -23,8 +23,9 @@ const OnMouseEnter= () => {
     }
         setShowMenu(true)
  }
+
  const OnMouseExit =() => { 
-    timerId.current=setTimeout(() => {
+    timerId.current=window.setTimeout(() => {
         setShowMenu(false)
     }, 300);
   } 
@@ -69,7 +70,7 @@ const OnMouseEnter= () => {
                         <img src={profile.imageUrl} alt={profile.name} className='h-8 w-8 ' />
                         {profile.name}</li>)}
             
-                <li className={userProfiles?.profiles.length ?? 0  > 1 ? ` -mx-4 border-t border-t-gray-500 px-4  pt-2`:""}>
+                <li className={(userProfiles?.profiles.length ?? 0 ) > 1 ? ` -mx-4 border-t border-t-gray-500 px-4  pt-2`:""}>
                     <Link to="/ManageProfiles" className='hover:underline'>Manage Profile</Link>
                     </li>
                 <li>Transfer Profile</li>
