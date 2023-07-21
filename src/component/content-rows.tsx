@@ -38,7 +38,7 @@ const ContentRow = ({ title, endpoint }: RowProp) => {
 
   const onNextClick = () => {
     if (sliderRef.current) {
-      let updatedTranslateX = translateX - getTranslateXValue()
+      const updatedTranslateX = translateX - getTranslateXValue()
       sliderRef.current.style.transform = `translateX(${updatedTranslateX}%)`;
       setTranslateX(updatedTranslateX)
       setCurrentPage(currentPage + 1)
@@ -47,7 +47,7 @@ const ContentRow = ({ title, endpoint }: RowProp) => {
 
   const PrevClick = () => {
     if (sliderRef.current) {
-      let updatedTranslateX = translateX + getTranslateXValue()
+      const updatedTranslateX = translateX + getTranslateXValue()
       sliderRef.current.style.transform = `translateX(${updatedTranslateX}%)`;
       setTranslateX(updatedTranslateX)
       setCurrentPage(currentPage - 1)
@@ -84,7 +84,7 @@ const ContentRow = ({ title, endpoint }: RowProp) => {
       <h2 className=" text-lg">{title}</h2>
       <PageIndecator className='mb-2  opacity-0 transition-opacity duration-300 ease-in' pagesCount={pagesCount} currentPage={currentPage} />
       <section className="relative flex flex-nowrap overflow-hidden mb-8 gap-2" ref={containerRef}>
-        {!disablePrev ? <button className="absolute h-full bg-black/25 w-12 opacity-0  transition-opacity duration-300 ease-in" onClick={PrevClick}><ChevronLeft /></button> : null}
+        {!disablePrev ? <button className="absolute z-[1] h-full bg-black/25 w-12 opacity-0  transition-opacity duration-300 ease-in" onClick={PrevClick}><ChevronLeft /></button> : null}
         {!disableNext ? <button className="absolute z-[1] h-full right-0 w-12 bg-black/25  opacity-0 transition-opacity duration-300 ease-in" onClick={onNextClick}>
           <ChevronRight className='text-white ' />
         </button> : null

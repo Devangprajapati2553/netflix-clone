@@ -14,6 +14,7 @@ import Gentre from './component/Gentre'
 import Movies from './component/Movies'
 import Registration from './pages/registration'
 import Loader from './component/Loader'
+import HelpCenter from './pages/HelpCenter'
 
 const ProtectedRoute = ({ children }: { children: React.ReactElement }) => {
   const { user, loading } = useAuth()
@@ -38,6 +39,7 @@ function AppRouter() {
       <Route path='/' element={<ProtectedRoute><Outlet /></ProtectedRoute>}    >
         <Route index element={<Profile />} />
         <Route path='/ManageProfiles' element={<Profile edit />} errorElement={<RouteError/>}/>
+        <Route path='/helpcenter' element={<HelpCenter  />} />
         <Route path='browse' element={<MainLayout />}    >
           <Route index element={<Browse />} />
           <Route path='genre' element={<Gentre />} />

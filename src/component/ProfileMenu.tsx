@@ -73,9 +73,9 @@ const OnMouseEnter= () => {
                 <li className={(userProfiles?.profiles.length ?? 0 ) > 1 ? ` -mx-4 border-t border-t-gray-500 px-4  pt-2`:""}>
                     <Link to="/ManageProfiles" className='hover:underline'>Manage Profile</Link>
                     </li>
-                <li>Transfer Profile</li>
-                <li> Account</li>
-                <li> Help Center</li>
+                <li ><Link to="/ManageProfiles" className='hover:underline'>Transfer Profile</Link></li>
+                {/* <li> Account</li> */}
+                <li><Link to="/helpcenter" className='hover:underline'>  Help Center</Link></li>
                 <li onClick={SungOutNetflix} className='-mx-4 border-t border-t-gray-500 px-4  pt-2 hover:underline'>Sign Out  Of NetFlix</li>
             </ul>
         ):null}

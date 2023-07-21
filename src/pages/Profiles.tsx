@@ -25,7 +25,10 @@ const Profiles = ({ edit }: { edit: boolean }) => {
   }
   const OnProfileClick = (profile: UserProfile) => {
     dispatch({ type: "current", payload: profile })
-    navigate('/browse');
+    if (!edit) {
+      
+      navigate('/browse');
+    }
 
   }
 
@@ -88,7 +91,7 @@ export default Profiles
 
 
 
-const ProfileButton = ({
+export const ProfileButton = ({
   buttonType = "primary",
   ...props
 }: {
@@ -97,15 +100,17 @@ const ProfileButton = ({
   return <button {...props} className={`${buttonType === "primary" ? "bg-gray-100 text-dark hover:bg-netFlixRed hover:text-white" : "border border-white text-gray-400 hover:text-white"} py-2 flex   w-fit  px-4 text-xl ${props.className}`}>{props.children}</button>
 }
 
-const ProfileCard = ({ 
+const ProfileCard = ({
   edit,
-   onEditClick,
-    onProfileClick,
-     profile
- }: { edit: boolean,
-   onEditClick: (profile: UserProfile) => void;
-    onProfileClick: (profile: UserProfile) => void;
-     profile: UserProfile }) => {
+  onEditClick,
+  onProfileClick,
+  profile
+}: {
+  edit: boolean,
+  onEditClick: (profile: UserProfile) => void;
+  onProfileClick: (profile: UserProfile) => void;
+  profile: UserProfile
+}) => {
 
   // const editClick = (event: React.SyntheticEvent) => {
   //   event.stopPropagation()
