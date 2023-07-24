@@ -9,8 +9,7 @@ const Browse = () => {
 
   const params=useParams()
   console.log(params.id,"id ");
-  const id= params.id
-
+ 
     
       
   

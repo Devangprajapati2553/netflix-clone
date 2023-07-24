@@ -95,7 +95,7 @@ const ContentRow = ({ title, endpoint }: RowProp) => {
 
 
             return (
-              <MovieCard uid={`${row.id}-${title}`} key={`${row.id}-${title}`} {...row} />
+              <MovieCard uid={`${row.id}-${title}`} key={`${row.id}-${title}`}  {...row} />
             );
           })}
         </section>

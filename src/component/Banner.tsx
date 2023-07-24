@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import  { useEffect, useState } from 'react'
 import { FetchTvSerialInfo, FetchVideoInfo, MovieResponse, MovieResult, MovieVideoInfo, fetchRequest } from '../common/api'
 
@@ -49,7 +50,8 @@ const  getRandomIndex  =(last:number) => {
         console.log(filteredMovie,"filter");
 
       
-        const GetData = filteredMovie[filteredMovie.findIndex(x=>x.id==params.id)]
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        const GetData = filteredMovie[filteredMovie.findIndex((x: { id: string | undefined })=>x.id==params.id)]
         console.log(GetData,"getrr");
         
         

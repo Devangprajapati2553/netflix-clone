@@ -27,8 +27,8 @@ const MovieCard = ({ poster_path, id, title, uid }: MovieCardProp) => {
   const [videoInfo, setVideoInfo] = useState<MovieVideoInfo | null>(null)
   const movieCardRef = useRef<HTMLSelectElement>(null)
 
-
-
+//   const params=useParams()
+// const id:string =params.id
   const onClose = () => {
     setIsOpen(false)
   }
@@ -74,7 +74,7 @@ const MovieCard = ({ poster_path, id, title, uid }: MovieCardProp) => {
   }, [videoInfo, isOpen])
 
 const navigate =useNavigate()
-  const HandlePlayvideo= (id:string) => { 
+  const HandlePlayvideo= (id:number) => { 
     console.log("clicked",id);
     navigate(`/browse/${id}`)
     location.reload()
