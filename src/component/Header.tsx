@@ -43,7 +43,7 @@ const Header = () => {
                     <NavLink to="/browse" className={IsActiveLink}>Home</NavLink>
                     </li>
                     <li>
-                    <NavLink to="/browse/genre" className={IsActiveLink} >TV Shows</NavLink>
+                    <NavLink to="/genre" className={IsActiveLink} >TV Shows</NavLink>
                    </li>
                    <li>
                     <NavLink to="/browse/Movies" className={IsActiveLink} >Movies</NavLink>

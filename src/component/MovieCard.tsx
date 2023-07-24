@@ -8,6 +8,7 @@ import LikeIcon from '@heroicons/react/24/outline/HandThumbUpIcon'
 import PlusIcon from '@heroicons/react/24/outline/PlusIcon'
 import ChevronDown from '@heroicons/react/24/outline/ChevronDownIcon'
 import { Position } from '../common/types'
+import { useNavigate } from 'react-router-dom'
 
 type MovieCardProp = {
   poster_path: string,
@@ -72,6 +73,12 @@ const MovieCard = ({ poster_path, id, title, uid }: MovieCardProp) => {
 
   }, [videoInfo, isOpen])
 
+const navigate =useNavigate()
+  const HandlePlayvideo= (id:string) => { 
+    console.log("clicked",id);
+    navigate(`/browse/${id}`)
+    location.reload()
+   }
 
 
   return (
@@ -101,7 +108,7 @@ const MovieCard = ({ poster_path, id, title, uid }: MovieCardProp) => {
           <section className='flex  items-center justify-between p-6'>
             <ul className='flex items-center justify-evenly gap-4'>
               <li className='h-12 w-12    '>
-                <button className='h-full w-full' >
+                <button className='h-full w-full' onClick={()=>HandlePlayvideo(id)}>
                   <PlayIcon />
                 </button>
 

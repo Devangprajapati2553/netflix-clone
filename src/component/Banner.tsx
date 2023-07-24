@@ -1,11 +1,12 @@
 import  { useEffect, useState } from 'react'
-import { FetchVideoInfo, MovieResponse, MovieResult, MovieVideoInfo, fetchRequest } from '../common/api'
+import { FetchTvSerialInfo, FetchVideoInfo, MovieResponse, MovieResult, MovieVideoInfo, fetchRequest } from '../common/api'
 
 import { createImageUrl } from '../common/utils'
 import YouTube,{YouTubeEvent, YouTubeProps} from 'react-youtube'
 import PlayIcon from '@heroicons/react/24/solid/PlayCircleIcon'
 import Info from '@heroicons/react/24/outline/InformationCircleIcon'
 import Loader from './Loader'
+import { useLocation, useParams } from 'react-router-dom'
 
 
 const Banner = ({type} :{type:any}) => {
@@ -22,31 +23,77 @@ const [showBackDrop, setShowBackDrop] = useState(false)
         controls:1
   }
 }
+  const params=useParams()
+  console.log(params.id,"params");
+  const ott = params.id
+  // const id= params.id
+
+  const location=useLocation()
+  console.log(location.pathname,"checl");
+
+  
+
+  
+
 const  getRandomIndex  =(last:number) => { 
     return Math.floor(Math.random()* (last-1))
  }
+
+
  const FetchPopularMovie = async() => { 
         const response = await fetchRequest<MovieResponse<MovieResult[]>>(type)
-            const filteredMovie=response.results.filter(movie=>movie.backdrop_path)
+        console.log(type,"tyypee");
+        console.log(response,"resssss")
+            const filteredMovie=response.results.filter(movie=>movie.backdrop_path) as any
         // setRandomMovie( filteredMovie[getRandomIndex(filteredMovie.length)])
+        console.log(filteredMovie,"filter");
+
+      
+        const GetData = filteredMovie[filteredMovie.findIndex(x=>x.id==params.id)]
+        console.log(GetData,"getrr");
+        
+        
+        
+
+
+//window is crashing we change the geData Sel values 
+// Write randomselection instead of setvalues
+        
 
         const randomSelection = filteredMovie[getRandomIndex(filteredMovie.length)]
-        setRandomMovie(randomSelection)
-        console.log(randomSelection,"random");
+
+        const SetValues= params.id ? GetData : randomSelection
         
 
+        setRandomMovie(SetValues)
+        console.log(randomSelection.id.toString(),"random");
+
+        const nord = ott ? ott : randomSelection.id.toString()
         
 
 
-          const videoInfo = await FetchVideoInfo(randomSelection.id.toString())
+      if (location.pathname=="/genre") {
+        const videoInfo = await FetchTvSerialInfo(nord)
+        setVideoInfo(videoInfo[0])
+        setTimeout(() => {
+          setHidePoster(true)
+        }, 1000);
+      }else
+        
+
+       { const videoInfo = await FetchVideoInfo(nord)
           setVideoInfo(videoInfo[0])
           setTimeout(() => {
             setHidePoster(true)
-          }, 1000);
+          }, 1000)}
         }
+        
+       
+        // i add new functiom of FetchTvSerialInfo 
 
         useEffect(() => {
          FetchPopularMovie()
+        
         //void aapde add karyu che
         }, [])
         

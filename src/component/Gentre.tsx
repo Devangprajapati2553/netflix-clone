@@ -8,6 +8,7 @@ const Gentre = () => {
     <section  className='absolute top-0 h-full '>
     <Banner type={ENDPOINT.TV_SERIAL}/>
       <ContentRow endpoint={ENDPOINT.TV_SERIAL} title = "Genre" />
+      <section className='h-20 '></section>
      
   </section>
   )

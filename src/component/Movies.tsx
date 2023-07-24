@@ -9,6 +9,8 @@ const Movies = () => {
       <Banner type={ENDPOINT.UPCOMING_MOVIES}/>
 
 <ContentRow endpoint={ENDPOINT.UPCOMING_MOVIES} title = "Upcoming Movies" />
+<section className='h-20 '></section>
+
     </section>
   )
 }

@@ -5,7 +5,7 @@ const PageIndecator = ({pagesCount,currentPage,className} :{pagesCount:number, c
     isFinite(pagesCount)?
     <div>
         <ul className={`flex  gap-1  justify-end items-center pr-4  ${className} `}>
-        // eslint-disable-line @typescript-eslint/no-unused-vars
+     
     {Array(pagesCount).fill(0).map((x, index)=>(
         <li className={`${x} h-[2px] w-3 ${currentPage===index ? "bg-gray-100" : "bg-gray-600"} `} key={index}></li>
     ))} 

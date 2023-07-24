@@ -8,7 +8,7 @@ const Popular = () => {
     <section  className='absolute top-0 h-full '>
     <Banner type={ENDPOINT.MOVIES_POPULAR}/>
       <ContentRow endpoint={ENDPOINT.MOVIES_POPULAR} title = "New & Popular" />
-     
+     <section className='h-20'></section>
   </section>
   )
 }

@@ -8,8 +8,8 @@ const HelpCenter = () => {
     <section className='max-w-screen-xl mx-auto flex flex-col  justify-center items-start mt-20 gap-5'>
         <h1 className='text-4xl font-semibold'>Download the netflix app: </h1>
         <div className='flex gap-5 items-center '>
-           <img src={GooglePlay} alt="" className=' h-24 ' />
-           <img src={AppleStore} alt="" className=' h-20 ' />
+           <Link to="https://play.google.com/store/apps/details?id=com.netflix.mediaclient&hl=en_IN&gl=US&pli=1"><img src={GooglePlay} alt="" className=' h-24 '  /></Link>
+           <Link to="https://apps.apple.com/us/app/netflix/id363590051"><img src={AppleStore} alt="" className=' h-20 ' /></Link>
         </div>
         <h1 className='text-xl'>Questions? <Link to="https://help.netflix.com/en/node/42109#:~:text=From%20the%20Netflix%20app%2C%20go,Customer%20Service%20or%20Contact%20Us."
          className='text-netFlixRed'> Learn How to  contact us from the Netflix app!</Link></h1>

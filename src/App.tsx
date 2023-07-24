@@ -42,9 +42,19 @@ function AppRouter() {
         <Route path='/helpcenter' element={<HelpCenter  />} />
         <Route path='browse' element={<MainLayout />}    >
           <Route index element={<Browse />} />
-          <Route path='genre' element={<Gentre />} />
+        <Route path=':id' element={<Browse />} />
+        
+
+          {/* <Route path='genre' element={<Gentre />} /> */}
           <Route path='Movies' element={<Movies />} />
         </Route>
+        <Route path='genre' element={<MainLayout />} >
+        <Route index element={<Gentre />} />
+          
+          </Route>
+
+
+
         <Route path='latest' element={<MainLayout />}    >
           <Route index element={<Popular />} />
         </Route>

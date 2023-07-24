@@ -63,3 +63,13 @@ export const FetchVideoInfo = async (id: string) => {
     return response.results.filter((result) => result.site.toLowerCase() === "youtube")
 
 }
+
+
+export const FetchTvSerialInfo = async (id: string) => {
+    const response = await fetchRequest<MovieVideoResult<MovieVideoInfo[]>>(ENDPOINT.TV_SERIAL_BY_ID.replace("{series_id}", id))
+    return response.results.filter((result) => result.site.toLowerCase() === "youtube")
+
+}
+
+
+
